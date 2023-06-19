@@ -2,27 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PropertyContactRequest;
 use App\Http\Requests\SearchPropertiesRequest;
+use App\Mail\PropertyContactMail;
 use App\Models\Property;
+use Illuminate\Support\Facades\Mail;
+
 
 class PropertyController extends Controller
 {
-    public function index(SearchPropertiesRequest $request){
+    public function index(SearchPropertiesRequest $request)
+    {
         $query = Property::query()->orderBy('created_at', 'desc');
-        if ($price = $request->validated('price')){
+        if ($price = $request->validated('price')) {
             $query = $query->where('price', '<=', $price);
         }
-        if ($surface = $request->validated('surface')){
+        if ($surface = $request->validated('surface')) {
             $query = $query->where('surface', '>=', $surface);
         }
-        if ($rooms = $request->validated('rooms')){
+        if ($rooms = $request->validated('rooms')) {
             $query = $query->where('rooms', '>=', $rooms);
         }
-        if ($title = $request->validated('title')){
+        if ($title = $request->validated('title')) {
             $query = $query->where('title', 'like', "%{$title}%");
         }
         $properties = Property::paginate(8);
-        return view('property.index',[
+        return view('property.index', [
             'properties' => $query->paginate(8),
             'input' => $request->validated()
         ]);
@@ -31,12 +36,18 @@ class PropertyController extends Controller
     public function show(string $slug, Property $property)
     {
         $expected = $property->getSlug();
-        if ( $slug !== $expected) {
+        if ($slug !== $expected) {
             return to_route('property.show', ['slug' => $property->getSlug(), 'property' => $property]);
         }
 
         return view('property.show', [
             'property' => $property
         ]);
+    }
+
+    public function contact(Property $property, PropertyContactRequest $request)
+    {
+        Mail::send(new PropertyContactMail($property, $request->validated()));
+        return back()->with('success', 'Votre demande de contact a bien été envoyé');
     }
 }

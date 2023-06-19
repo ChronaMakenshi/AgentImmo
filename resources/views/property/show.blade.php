@@ -43,11 +43,13 @@
         <hr>
         <div class="mt 5">
             <h4 class="text-2xl font-bold underline my-6 text-center dark:text-blanc">Intéresse par ce bien ?</h4>
-            <form action="" method="post"
+            @include('shared.flash')
+            <form action="{{ route('property.contact', $property) }}" method="post"
                   class="gap-3 bg-blanc mt-5 shadow-lg rounded px-8 pt-6 pb-8 mb-4 dark:bg-gris">
+                @csrf
                 <div class="columns-2">
-                    @include('shared.input', ['label' => 'Prénom', 'name' => 'firstname'])
-                    @include('shared.input', ['label' => 'Nom', 'name' => 'lastname'])
+                    @include('shared.input', ['label' => 'Prénom', 'name' => 'firstName'])
+                    @include('shared.input', ['label' => 'Nom', 'name' => 'lastName'])
                 </div>
                 <div class="columns-2 my-2">
                     @include('shared.input', ['label' => 'Téléphone', 'name' => 'phone'])
