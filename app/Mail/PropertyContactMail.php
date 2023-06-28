@@ -29,7 +29,7 @@ class PropertyContactMail extends Mailable
         return new Envelope(
             to: 'Neuneu@gmail.com',
             replyTo: $this->data['email'],
-            subject: 'Property Contact Mail',
+            subject: 'Email de contact de la propriété',
         );
     }
 

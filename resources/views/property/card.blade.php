@@ -1,6 +1,9 @@
 <div class="max-w-sm rounded overflow-hidden shadow-lg mx-0.5 dark:bg-blanc">
     <div class="px-6 py-4">
-        <div class="font-semibold underline text-xl mb-2"><a
+        @if($property->image)
+            <img src="{{ image($property->image , 360, 200) }}" alt="">
+        @endif
+        <div class="font-semibold underline text-xl my-2"><a
                     href="{{ route('property.show', ['slug' => $property->getSlug(), 'property' => $property]) }}">{{ $property->title }}</a>
         </div>
         <p class="text-gris-foncer text-justify line-clamp-3">

@@ -45,7 +45,7 @@
                                     </span>
                                 @else
                                     <a href="{{ $url }}"
-                                       class="relative inline-flex items-center px-4 py-2 -ml-px hover:bg-bleu-clair hover:text-blanc text-sm font-bold text-gris-foncer bg-white border border-gris-clair leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gris-foncer focus:border-bleu-clair  active:bg-bleu active:text-blanc transition ease-in-out duration-150 dark:bg-blanc"
+                                       class="relative inline-flex items-center px-4 py-2 -ml-px hover:bg-bleu-clair hover:text-blanc text-sm font-bold text-gris-foncer bg-white border border-gris-clair leading-5 hover:text-gray-500 focus:z-10 focus:outline-none focus:ring ring-gris-foncer focus:border-bleu-clair  active:bg-bleu active:text-blanc transition ease-in-out duration-150"
                                        aria-label="{{ __('Go to page :page', ['page' => $page]) }}">
                                         {{ $page }}
                                     </a>
@@ -57,7 +57,7 @@
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
                         <a href="{{ $paginator->nextPageUrl() }}" rel="next"
-                           class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gris bg-white border border-gris-clair rounded-r-md leading-5 hover:text-gris-clair focus:z-10 focus:outline-none focus:ring ring-gris focus:border-bleu-clair  active:text-gris transition ease-in-out duration-150 dark:bg-blanc"
+                           class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gris bg-white border border-gris-clair rounded-r-md leading-5 hover:text-gris-clair focus:z-10 focus:outline-none focus:ring ring-gris focus:border-bleu-clair  active:text-gris transition ease-in-out duration-150"
                            aria-label="{{ __('pagination.next') }}">
                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                 <path fill-rule="evenodd"
@@ -67,7 +67,7 @@
                         </a>
                     @else
                         <span aria-disabled="true" aria-label="{{ __('pagination.next') }}">
-                            <span class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gris bg-white border border-gris-clair cursor-default rounded-r-md leading-5 dark:bg-blanc"
+                            <span class="relative inline-flex items-center px-2 py-2 -ml-px text-sm font-medium text-gris bg-white border border-gris-clair cursor-default rounded-r-md leading-5"
                                   aria-hidden="true">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd"
@@ -92,7 +92,7 @@
             @endif
             <div class="hidden sm:flex-1 sm:flex sm:items-center font-bold">
                 <div>
-                    <p class="text-sm text-noir  leading-5 dark:text-blanc">
+                    <p class="text-sm text-noir  leading-5">
                         {!! __('Affichage de') !!}
                         @if ($paginator->firstItem())
                             <span class="font-boldm">{{ $paginator->firstItem() }}</span>
@@ -110,11 +110,11 @@
             </div>
             @if ($paginator->hasMorePages())
                 <a href="{{ $paginator->nextPageUrl() }}"
-                   class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-bold text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150 dark:bg-blanc">
+                   class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-bold text-gray-700 bg-white border border-gray-300 leading-5 rounded-md hover:text-gray-500 focus:outline-none focus:ring ring-gray-300 focus:border-blue-300 active:bg-gray-100 active:text-gray-700 transition ease-in-out duration-150">
                     {!! __('Suivant »') !!}
                 </a>
             @else
-                <span class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-bold text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md dark:bg-blanc">
+                <span class="relative inline-flex items-center px-4 py-2 ml-3 text-sm font-bold text-gray-500 bg-white border border-gray-300 cursor-default leading-5 rounded-md">
                     {!! __('Suivant »') !!}
                 </span>
             @endif

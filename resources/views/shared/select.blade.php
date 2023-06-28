@@ -13,7 +13,7 @@
         @endforeach
     </select>
     @error($name)
-    <div class="text-rouge dark:font-bold dark:saturate-200">
+    <div class="text-rouge">
         {{ $message }}
     </div>
     @enderror

@@ -4,8 +4,8 @@
 
 @section('content')
 
-    <div class="container mx-auto">
-        <div class="bg-blanc py-5 mb-5 text-center  dark:bg-noir">
+    <div class="container mx-auto ">
+        <div class="bg-blanc py-5 mb-5 text-center dark:bg-noir">
             <form action="" method="get" class="flex justify-between rounded">
                 <input type="number" class="rounded" placeholder="Surface max" name="surface"
                        value="{{ $input['surface'] ?? '' }}">

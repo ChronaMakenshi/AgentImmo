@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <h1 class="text-3xl font-bold text-bleu mb-5 dark:text-blanc">@yield('title')</h1>
+    <h1 class="text-3xl font-bold text-bleu mb-5 underline dark:text-blanc">@yield('title')</h1>
     <form class="bg-blanc mt-5 shadow-lg rounded px-8 pt-6 pb-8 mb-4 dark:bg-gris"
           action="{{ route($option->exists ? 'admin.option.update' : 'admin.option.store', $option) }}"
           method="post">

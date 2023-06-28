@@ -23,6 +23,7 @@ class PropertyFormRequest extends FormRequest
     {
         return [
             'title' => ['required', 'min:8'],
+            'image' => ['image', 'max:2000'],
             'description' => ['required','min:8'],
             'surface' => ['required', 'integer', 'min:10'],
             'rooms' => ['required', 'integer', 'min:1'],

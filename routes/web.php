@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ImageController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PropertyController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +17,14 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 $idRegex = '[0-9]+';
 $showRegex = '[0-9a-z\-]+';
 
-Route::get( '/', [HomeController::class, 'index'] )->name('home');
+Route::get('/', [HomeController::class, 'index'], function () {
+    return view('home');
+})->name('home');
+
 Route::get('/biens', [PropertyController::class, 'index'])->name('property.index');
 Route::get('/biens/{slug}-{property}', [PropertyController::class, 'show'])->name('property.show')->where([
     'slug' => $showRegex,
@@ -28,15 +35,17 @@ Route::post('/biens/{property}/contact', [PropertyController::class, 'contact'])
     'property' => $idRegex,
 ]);
 
-Route::get('/login', [\App\Http\Controllers\AuthController::class, 'login'])
-    ->middleware('guest')
-    ->name('login');
-Route::post('/login', [\App\Http\Controllers\AuthController::class, 'doLogin']);
-Route::delete('/logout', [\App\Http\Controllers\AuthController::class, 'logout'])
-    ->middleware('auth')
-    ->name('logout');
+Route::get('/img/property/{path}', [ImageController::class, 'show'])->where('path', '.*');
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function () {
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::prefix('admin')->middleware(['auth', 'verified'])->name('admin.')->group(function () {
     Route::resource('property', App\Http\Controllers\Admin\PropertyController::class)->except(['show']);
     Route::resource('option', \App\Http\Controllers\Admin\OptionController::class)->except(['show']);
 });
+require __DIR__.'/auth.php';
